@@ -17,10 +17,14 @@
     {{-- Sidebar --}}
     <aside id="sidebar" class="w-64 bg-gray-900 text-white flex flex-col flex-shrink-0 transition-all duration-300">
         {{-- Logo --}}
-        <div class="flex items-center gap-3 p-5 border-b border-gray-700">
-            <i class="fas fa-store text-blue-400 text-xl"></i>
-            <span class="font-bold text-lg">Kantin Biru</span>
-            <span class="text-xs bg-blue-700 px-2 py-0.5 rounded ml-auto">Admin</span>
+        <div class="flex flex-col items-center gap-2 px-4 py-5 border-b border-gray-700">
+            <img src="{{ asset('images/logokantinbiru.jpeg') }}"
+                 alt="Kantin Biru"
+                 class="w-28 h-auto object-contain rounded-lg">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-base text-white">Kantin Biru</span>
+                <span class="text-xs bg-blue-700 px-2 py-0.5 rounded-full">Admin</span>
+            </div>
         </div>
 
         {{-- Menu --}}

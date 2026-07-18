@@ -12,8 +12,8 @@
 <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
     {{-- Header --}}
     <div class="text-center mb-8">
-        <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-700 rounded-full mb-4">
-            <i class="fas fa-user-plus text-white text-2xl"></i>
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full mb-4 shadow-md p-2">
+            <img src="{{ asset('images/logokantinbiru.jpeg') }}" alt="Kantin Biru" class="w-full h-full object-contain">
         </div>
         <h1 class="text-2xl font-bold text-gray-800">Buat Akun</h1>
         <p class="text-gray-500 text-sm mt-1">Daftar dan mulai belanja di Kantin Biru</p>

@@ -22,9 +22,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 {{-- Logo --}}
-                <a href="{{ route('pelanggan.home') }}" class="flex items-center gap-2 text-xl font-bold">
-                    <i class="fas fa-store"></i>
-                    <span>Kantin Biru</span>
+                <a href="{{ route('pelanggan.home') }}" class="flex items-center gap-2">
+                    <div class="bg-white rounded-lg p-1 flex items-center justify-center" style="width:44px;height:44px;">
+                        <img src="{{ asset('images/logokantinbiru.jpeg') }}"
+                             alt="Kantin Biru"
+                             class="w-full h-full object-contain rounded">
+                    </div>
+                    <span class="text-xl font-bold">Kantin Biru</span>
                 </a>
 
                 {{-- Navigasi --}}
@@ -129,7 +133,14 @@
     {{-- Footer --}}
     <footer class="bg-biru text-white mt-12 py-8">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="font-bold text-lg mb-1"><i class="fas fa-store mr-2"></i>Kantin Biru</p>
+            <div class="flex items-center justify-center gap-3 mb-2">
+                <div class="bg-white rounded-lg p-1 flex items-center justify-center" style="width:40px;height:40px;">
+                    <img src="{{ asset('images/logokantinbiru.jpeg') }}"
+                         alt="Kantin Biru"
+                         class="w-full h-full object-contain rounded">
+                </div>
+                <p class="font-bold text-lg">Kantin Biru</p>
+            </div>
             <p class="text-blue-200 text-sm">Temukan makanan & minuman terbaik di kantin kami</p>
             <p class="text-blue-300 text-xs mt-4">&copy; {{ date('Y') }} Kantin Biru. All rights reserved.</p>
         </div>
