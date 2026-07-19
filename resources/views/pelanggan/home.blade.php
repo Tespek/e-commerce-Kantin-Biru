@@ -9,7 +9,10 @@
     <div class="bg-gradient-to-r from-blue-700 to-blue-900 rounded-2xl text-white p-8 mb-8 flex items-center justify-between">
         <div>
             <h1 class="text-3xl font-bold mb-2">Selamat Datang di Kantin Biru! 🍽️</h1>
-            <p class="text-blue-100 mb-4">Temukan makanan & minuman lezat favorit kamu</p>
+            <p class="text-blue-100 mb-2">Temukan makanan & minuman lezat favorit kamu</p>
+            <p class="text-blue-200 text-sm mb-4 max-w-2xl leading-relaxed">
+                Kantin Biru menghadirkan beragam pilihan camilan dengan cita rasa manis, asin, dan gurih yang dibuat dari bahan-bahan berkualitas pilihan, diolah dengan penuh perhatian terhadap kebersihan dan kesegaran agar setiap gigitan memberikan pengalaman rasa yang memuaskan dan cocok dinikmati oleh semua kalangan, mulai dari anak-anak hingga orang dewasa.
+            </p>
             <a href="#produk" class="bg-white text-blue-700 px-6 py-2.5 rounded-lg font-semibold hover:bg-blue-50 transition inline-block">
                 Belanja Sekarang
             </a>

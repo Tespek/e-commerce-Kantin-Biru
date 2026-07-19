@@ -16,7 +16,7 @@
         <p>Order #{{ $order->id_order }} • Total: <strong>Rp {{ number_format($order->total_harga, 0, ',', '.') }}</strong></p>
         <p class="mt-1">Metode: <strong>{{ $order->pembayaran->metode }}</strong></p>
         @if($order->pembayaran->metode === 'Transfer Bank')
-            <p class="mt-2">Rekening tujuan: <strong>BCA 1234567890 a/n Kantin Biru</strong></p>
+            <p class="mt-2">Rekening tujuan: <strong>BSI 7284671238 a/n Kantin Biru</strong></p>
         @elseif($order->pembayaran->metode === 'QRIS')
             <p class="mt-2">Scan QR Code yang tersedia di kasir atau tampilkan ke petugas.</p>
         @endif

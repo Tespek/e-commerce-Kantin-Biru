@@ -131,18 +131,84 @@
     </main>
 
     {{-- Footer --}}
-    <footer class="bg-biru text-white mt-12 py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="flex items-center justify-center gap-3 mb-2">
-                <div class="bg-white rounded-lg p-1 flex items-center justify-center" style="width:40px;height:40px;">
-                    <img src="{{ asset('images/logokantinbiru.jpeg') }}"
-                         alt="Kantin Biru"
-                         class="w-full h-full object-contain rounded">
+    <footer class="bg-biru text-white mt-12 pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4">
+
+            {{-- Grid atas: logo + deskripsi | info --}}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+
+                {{-- Kolom 1: Brand & Deskripsi --}}
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="bg-white rounded-lg p-1 flex items-center justify-center" style="width:44px;height:44px;">
+                            <img src="{{ asset('images/logokantinbiru.jpeg') }}"
+                                 alt="Kantin Biru"
+                                 class="w-full h-full object-contain rounded">
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg leading-tight">Kantin Biru</p>
+                            <p class="text-blue-300 text-xs">UMKM Kuliner Sejak 2019</p>
+                        </div>
+                    </div>
+                    <p class="text-blue-200 text-sm leading-relaxed mb-2">
+                        Kantin Biru merupakan UMKM yang bergerak di bidang kuliner, berlokasi di Blang Pulo,
+                        Jalan Kampus Bukit Indah. Didirikan oleh <span class="text-white font-medium">Chairina</span> pada tahun 2019,
+                        Kantin Biru hadir sebagai pilihan utama bagi pecinta camilan dengan menawarkan berbagai menu
+                        berkualitas yang memiliki perpaduan cita rasa manis, asin, dan gurih yang lezat.
+                    </p>
+                    <p class="text-blue-200 text-sm leading-relaxed">
+                        Dengan harga yang terjangkau — terutama bagi mahasiswa — Kantin Biru berkomitmen untuk
+                        menyajikan camilan yang nikmat, berkualitas, dan cocok dinikmati kapan saja.
+                    </p>
                 </div>
-                <p class="font-bold text-lg">Kantin Biru</p>
+
+                {{-- Kolom 2: Informasi --}}
+                <div>
+                    <p class="font-semibold text-white mb-3 text-sm uppercase tracking-wider">Informasi</p>
+                    <ul class="space-y-2 text-blue-200 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-map-marker-alt mt-0.5 text-blue-400 shrink-0"></i>
+                            <a href="https://maps.app.goo.gl/t8jw781hDgQT2PMGA"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="hover:text-white transition">
+                                Jalan Kampus Bukit Indah, Blang Pulo, Lhokseumawe
+                            </a>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-user mt-0.5 text-blue-400 shrink-0"></i>
+                            <span>Pemilik: Chairina</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-calendar-alt mt-0.5 text-blue-400 shrink-0"></i>
+                            <span>Berdiri sejak 2019</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-clock mt-0.5 text-blue-400 shrink-0"></i>
+                            <span>Senin – Sabtu, 09.00 – 18.00 WIB</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-store mt-0.5 text-blue-400 shrink-0"></i>
+                            <span>UMKM Bidang Kuliner</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fab fa-instagram mt-0.5 text-blue-400 shrink-0"></i>
+                            <a href="https://www.instagram.com/kantinbiru.lsm?igsh=MWN0d3JqaGhnaWRlMw=="
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="hover:text-white transition">
+                                @kantinbiru.lsm
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <p class="text-blue-200 text-sm">Temukan makanan & minuman terbaik di kantin kami</p>
-            <p class="text-blue-300 text-xs mt-4">&copy; {{ date('Y') }} Kantin Biru. All rights reserved.</p>
+
+            {{-- Divider --}}
+            <div class="border-t border-blue-700 pt-4 text-center">
+                <p class="text-blue-300 text-xs">&copy; {{ date('Y') }} Kantin Biru. All rights reserved.</p>
+            </div>
+
         </div>
     </footer>
 
