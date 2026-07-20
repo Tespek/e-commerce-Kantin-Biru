@@ -101,7 +101,7 @@
                                class="flex items-center gap-1.5 bg-primary-50 hover:bg-primary-100 text-primary-700 border border-primary-200 text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-150">
                                 <i class="fas fa-eye text-xs"></i>Detail
                             </a>
-                            @if($order->pembayaran && $order->pembayaran->metode !== 'COD' && $order->pembayaran->status === 'menunggu')
+                            @if($order->pembayaran && $order->pembayaran->status === 'menunggu')
                                 <a href="{{ route('pesanan.upload-bukti', $order->id_order) }}"
                                    class="flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-150">
                                     <i class="fas fa-upload text-xs"></i>Upload Bukti

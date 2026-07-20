@@ -33,7 +33,7 @@ class CheckoutController extends Controller
     {
         $request->validate([
             'alamat_pengiriman' => 'required|string',
-            'metode_pembayaran' => 'required|in:Transfer Bank,QRIS,COD',
+            'metode_pembayaran' => 'required|in:Transfer Bank,QRIS',
         ], [
             'alamat_pengiriman.required' => 'Alamat pengiriman wajib diisi.',
             'metode_pembayaran.required' => 'Metode pembayaran wajib dipilih.',

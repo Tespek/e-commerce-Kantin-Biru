@@ -94,12 +94,6 @@
                                     'bg'    => 'bg-violet-50',
                                     'desc'  => 'Scan QR Code dengan GoPay, OVO, DANA, atau m-Banking'
                                 ],
-                                'COD' => [
-                                    'icon'  => 'fa-money-bill-wave',
-                                    'color' => 'text-emerald-600',
-                                    'bg'    => 'bg-emerald-50',
-                                    'desc'  => 'Bayar tunai saat pesanan diterima'
-                                ],
                             ];
                         @endphp
 
@@ -185,7 +179,7 @@
 @push('scripts')
 <script>
 function updatePaymentStyle() {
-    const methods = ['Transfer Bank', 'QRIS', 'COD'];
+    const methods = ['Transfer Bank', 'QRIS'];
     methods.forEach(m => {
         const slug  = m.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
         const label = document.getElementById('label-' + slug);

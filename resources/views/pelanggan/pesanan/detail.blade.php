@@ -180,7 +180,7 @@
             @endif
 
             {{-- Upload Button --}}
-            @if($order->pembayaran->metode !== 'COD' && $order->pembayaran->status === 'menunggu')
+            @if($order->pembayaran->status === 'menunggu')
                 <a href="{{ route('pesanan.upload-bukti', $order->id_order) }}"
                    class="inline-flex items-center gap-2 mt-4 bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 font-semibold px-5 py-2.5 rounded-xl transition-all duration-150 text-sm">
                     <i class="fas fa-upload"></i>

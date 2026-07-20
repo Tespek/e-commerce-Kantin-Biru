@@ -36,7 +36,7 @@ class PesananController extends Controller
                     ->where('id_user', Auth::id())
                     ->findOrFail($id);
 
-        if (!$order->pembayaran || $order->pembayaran->metode === 'COD') {
+        if (!$order->pembayaran) {
             return redirect()->route('pesanan.index')->with('info', 'Pesanan ini tidak memerlukan upload bukti.');
         }
 
