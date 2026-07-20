@@ -3,128 +3,215 @@
 @section('page-title', 'Detail Pesanan #' . $order->id_order)
 
 @section('content')
-<div class="grid lg:grid-cols-3 gap-6">
+<div class="grid lg:grid-cols-3 gap-5">
 
-    {{-- Kiri: Detail --}}
+    {{-- LEFT: Order Details --}}
     <div class="lg:col-span-2 space-y-5">
 
-        {{-- Info Order --}}
-        <div class="bg-white rounded-xl shadow-sm p-5">
-            <h2 class="font-bold text-gray-800 mb-4">Informasi Pesanan</h2>
-            <div class="grid grid-cols-2 gap-4 text-sm">
-                <div><p class="text-gray-500">ID Order</p><p class="font-medium">#{{ $order->id_order }}</p></div>
-                <div><p class="text-gray-500">Tanggal</p><p class="font-medium">{{ $order->created_at ? $order->created_at->format('d M Y, H:i') : '-' }}</p></div>
-                <div><p class="text-gray-500">Pelanggan</p><p class="font-medium">{{ $order->user->nama ?? '-' }}</p></div>
-                <div><p class="text-gray-500">No. HP</p><p class="font-medium">{{ $order->user->no_hp ?? '-' }}</p></div>
-                <div class="col-span-2"><p class="text-gray-500">Alamat Pengiriman</p><p class="font-medium">{{ $order->alamat_pengiriman }}</p></div>
+        {{-- Order Info --}}
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+            <h2 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <div class="w-7 h-7 bg-primary-50 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-receipt text-primary-600 text-xs"></i>
+                </div>
+                Informasi Pesanan
+            </h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-slate-50 rounded-xl p-3">
+                    <p class="text-xs text-slate-400 mb-1">ID Order</p>
+                    <p class="font-bold text-slate-800">#{{ $order->id_order }}</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-3">
+                    <p class="text-xs text-slate-400 mb-1">Tanggal</p>
+                    <p class="font-medium text-slate-800 text-sm">{{ $order->created_at ? $order->created_at->format('d M Y, H:i') : '-' }}</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-3">
+                    <p class="text-xs text-slate-400 mb-1">Pelanggan</p>
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 bg-primary-100 rounded-md flex items-center justify-center text-xs font-bold text-primary-700">
+                            {{ strtoupper(substr($order->user->nama ?? 'U', 0, 1)) }}
+                        </div>
+                        <p class="font-medium text-slate-800 text-sm">{{ $order->user->nama ?? '-' }}</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-3">
+                    <p class="text-xs text-slate-400 mb-1">No. HP</p>
+                    <p class="font-medium text-slate-800 text-sm">{{ $order->user->no_hp ?? '-' }}</p>
+                </div>
+                <div class="bg-slate-50 rounded-xl p-3 col-span-2">
+                    <p class="text-xs text-slate-400 mb-1">Alamat Pengiriman</p>
+                    <p class="font-medium text-slate-800 text-sm">{{ $order->alamat_pengiriman }}</p>
+                </div>
             </div>
         </div>
 
-        {{-- Produk --}}
-        <div class="bg-white rounded-xl shadow-sm p-5">
-            <h2 class="font-bold text-gray-800 mb-4">Produk</h2>
+        {{-- Products --}}
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+            <h2 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <div class="w-7 h-7 bg-primary-50 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-box text-primary-600 text-xs"></i>
+                </div>
+                Produk Dipesan
+            </h2>
             <div class="space-y-3">
                 @foreach($order->details as $detail)
-                    <div class="flex items-center gap-3 text-sm">
-                        <div class="w-12 h-12 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
+                    <div class="flex items-center gap-4 p-3 bg-slate-50 rounded-xl">
+                        <div class="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 border border-slate-200 bg-white">
                             @if($detail->produk->foto)
-                                <img src="{{ asset('storage/' . $detail->produk->foto) }}" class="w-full h-full object-cover">
+                                <img src="{{ asset('storage/' . $detail->produk->foto) }}" class="w-full h-full object-cover" alt="{{ $detail->produk->nama_produk }}">
                             @else
-                                <div class="w-full h-full flex items-center justify-center text-gray-300"><i class="fas fa-image"></i></div>
+                                <div class="w-full h-full flex items-center justify-center text-slate-300">
+                                    <i class="fas fa-image text-lg"></i>
+                                </div>
                             @endif
                         </div>
                         <div class="flex-1 min-w-0">
-                            <p class="font-medium truncate">{{ $detail->produk->nama_produk }}</p>
-                            <p class="text-gray-500">{{ $detail->jumlah }} × Rp {{ number_format($detail->harga, 0, ',', '.') }}</p>
+                            <p class="font-semibold text-sm text-slate-800 truncate">{{ $detail->produk->nama_produk }}</p>
+                            <p class="text-xs text-slate-400 mt-0.5">{{ $detail->jumlah }} × Rp {{ number_format($detail->harga, 0, ',', '.') }}</p>
                         </div>
-                        <p class="font-semibold">Rp {{ number_format($detail->subtotal, 0, ',', '.') }}</p>
+                        <p class="font-bold text-slate-800 text-sm shrink-0">
+                            Rp {{ number_format($detail->subtotal, 0, ',', '.') }}
+                        </p>
                     </div>
                 @endforeach
             </div>
-            <hr class="my-3">
-            <div class="flex justify-between font-bold text-sm">
-                <span>Total</span>
-                <span class="text-blue-700">Rp {{ number_format($order->total_harga, 0, ',', '.') }}</span>
+            <div class="h-px bg-slate-100 my-4"></div>
+            <div class="flex justify-between items-center">
+                <span class="font-bold text-slate-800">Total Pesanan</span>
+                <span class="font-bold text-xl text-primary-600">Rp {{ number_format($order->total_harga, 0, ',', '.') }}</span>
             </div>
         </div>
     </div>
 
-    {{-- Kanan: Aksi --}}
+    {{-- RIGHT: Actions --}}
     <div class="space-y-5">
 
-        {{-- Status Order --}}
-        <div class="bg-white rounded-xl shadow-sm p-5">
-            <h2 class="font-bold text-gray-800 mb-4">Update Status Pesanan</h2>
+        {{-- Update Status --}}
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+            <h2 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                <div class="w-7 h-7 bg-violet-100 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-gear text-violet-600 text-xs"></i>
+                </div>
+                Update Status Pesanan
+            </h2>
+
+            {{-- Current Status Badge --}}
+            @php
+                $sc = match($order->status) {
+                    'pending'    => 'bg-amber-50 text-amber-700 border-amber-200',
+                    'dibayar'    => 'bg-blue-50 text-blue-700 border-blue-200',
+                    'diproses'   => 'bg-violet-50 text-violet-700 border-violet-200',
+                    'selesai'    => 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                    'dibatalkan' => 'bg-red-50 text-red-700 border-red-200',
+                    default      => 'bg-slate-50 text-slate-700 border-slate-200',
+                };
+            @endphp
+            <div class="mb-3 flex items-center gap-2">
+                <span class="text-xs text-slate-400">Status saat ini:</span>
+                <span class="inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full border {{ $sc }}">
+                    {{ ucfirst($order->status) }}
+                </span>
+            </div>
+
             <form method="POST" action="{{ route('admin.pesanan.status', $order->id_order) }}">
                 @csrf @method('PATCH')
-                <select name="status" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none mb-3">
+                <select name="status"
+                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 cursor-pointer mb-3">
                     @foreach(['pending','dibayar','diproses','selesai','dibatalkan'] as $s)
                         <option value="{{ $s }}" {{ $order->status === $s ? 'selected' : '' }}>{{ ucfirst($s) }}</option>
                     @endforeach
                 </select>
-                <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded-lg text-sm hover:bg-blue-800 transition">
-                    <i class="fas fa-save mr-1"></i>Update Status
+                <button type="submit"
+                        class="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2.5 rounded-xl text-sm transition-all duration-200 shadow-sm hover:shadow">
+                    <i class="fas fa-floppy-disk mr-2"></i>Update Status
                 </button>
             </form>
         </div>
 
-        {{-- Pembayaran --}}
+        {{-- Payment Info --}}
         @if($order->pembayaran)
-            <div class="bg-white rounded-xl shadow-sm p-5">
-                <h2 class="font-bold text-gray-800 mb-4">Pembayaran</h2>
-                <div class="text-sm space-y-2 mb-4">
-                    <div class="flex justify-between">
-                        <span class="text-gray-500">Metode</span>
-                        <span class="font-medium">{{ $order->pembayaran->metode }}</span>
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+                <h2 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <div class="w-7 h-7 bg-amber-100 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-wallet text-amber-600 text-xs"></i>
                     </div>
-                    <div class="flex justify-between">
-                        <span class="text-gray-500">Status</span>
+                    Konfirmasi Pembayaran
+                </h2>
+
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                    <div class="bg-slate-50 rounded-xl p-3">
+                        <p class="text-xs text-slate-400 mb-1">Metode</p>
+                        <p class="font-semibold text-slate-800 text-sm">{{ $order->pembayaran->metode }}</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-xl p-3">
+                        <p class="text-xs text-slate-400 mb-1">Status Bayar</p>
                         @php
                             $pc = match($order->pembayaran->status) {
-                                'diterima' => 'text-green-600',
+                                'diterima' => 'text-emerald-600',
                                 'ditolak'  => 'text-red-600',
-                                default    => 'text-yellow-600',
+                                default    => 'text-amber-600',
                             };
                         @endphp
-                        <span class="font-semibold {{ $pc }}">{{ ucfirst($order->pembayaran->status) }}</span>
+                        <p class="font-bold text-sm {{ $pc }}">{{ ucfirst($order->pembayaran->status) }}</p>
                     </div>
                 </div>
 
                 @if($order->pembayaran->bukti_pembayaran)
                     <div class="mb-4">
-                        <p class="text-xs text-gray-500 mb-2">Bukti Pembayaran:</p>
-                        <a href="{{ asset('storage/' . $order->pembayaran->bukti_pembayaran) }}" target="_blank">
+                        <p class="text-xs text-slate-400 mb-2 font-medium">Bukti Pembayaran:</p>
+                        <a href="{{ asset('storage/' . $order->pembayaran->bukti_pembayaran) }}" target="_blank" rel="noopener noreferrer">
                             <img src="{{ asset('storage/' . $order->pembayaran->bukti_pembayaran) }}"
-                                 alt="Bukti" class="w-full rounded-lg border hover:opacity-90 transition">
+                                 alt="Bukti"
+                                 class="w-full rounded-xl border border-slate-200 shadow-sm hover:opacity-90 transition-opacity duration-150 cursor-zoom-in">
                         </a>
+                        <p class="text-[10px] text-slate-400 mt-1.5 text-center">Klik gambar untuk memperbesar</p>
                     </div>
 
                     @if($order->pembayaran->status === 'menunggu')
                         <div class="flex gap-2">
                             <form method="POST" action="{{ route('admin.pesanan.konfirmasi', $order->pembayaran->id_pembayaran) }}" class="flex-1">
                                 @csrf @method('PATCH')
-                                <button type="submit" onclick="return confirm('Konfirmasi pembayaran ini?')"
-                                    class="w-full bg-green-600 text-white py-2 rounded-lg text-sm hover:bg-green-700 transition">
-                                    <i class="fas fa-check mr-1"></i>Terima
+                                <button type="submit"
+                                        onclick="return confirm('Konfirmasi pembayaran ini? Status akan menjadi DITERIMA.')"
+                                        class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm transition-all duration-200 shadow-sm hover:shadow">
+                                    <i class="fas fa-check mr-1.5"></i>Terima
                                 </button>
                             </form>
                             <form method="POST" action="{{ route('admin.pesanan.tolak', $order->pembayaran->id_pembayaran) }}" class="flex-1">
                                 @csrf @method('PATCH')
-                                <button type="submit" onclick="return confirm('Tolak pembayaran ini?')"
-                                    class="w-full bg-red-600 text-white py-2 rounded-lg text-sm hover:bg-red-700 transition">
-                                    <i class="fas fa-times mr-1"></i>Tolak
+                                <button type="submit"
+                                        onclick="return confirm('Tolak pembayaran ini?')"
+                                        class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2.5 rounded-xl text-sm transition-all duration-200 shadow-sm hover:shadow">
+                                    <i class="fas fa-times mr-1.5"></i>Tolak
                                 </button>
                             </form>
                         </div>
+                    @elseif($order->pembayaran->status === 'diterima')
+                        <div class="flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-xl text-sm font-medium">
+                            <i class="fas fa-circle-check"></i>
+                            Pembayaran telah dikonfirmasi
+                        </div>
+                    @elseif($order->pembayaran->status === 'ditolak')
+                        <div class="flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm font-medium">
+                            <i class="fas fa-circle-xmark"></i>
+                            Pembayaran telah ditolak
+                        </div>
                     @endif
                 @else
-                    <p class="text-sm text-gray-400 text-center py-2">Belum ada bukti pembayaran</p>
+                    <div class="text-center py-5">
+                        <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-image text-slate-300 text-xl"></i>
+                        </div>
+                        <p class="text-sm text-slate-400">Belum ada bukti pembayaran</p>
+                    </div>
                 @endif
             </div>
         @endif
 
-        <a href="{{ route('admin.pesanan.index') }}" class="block text-center text-gray-500 text-sm hover:text-gray-700">
-            <i class="fas fa-arrow-left mr-1"></i>Kembali
+        {{-- Back --}}
+        <a href="{{ route('admin.pesanan.index') }}"
+           class="flex items-center justify-center gap-2 text-sm text-slate-500 hover:text-primary-600 transition-colors duration-150 font-medium py-2">
+            <i class="fas fa-arrow-left text-xs"></i>Kembali ke Daftar Pesanan
         </a>
     </div>
 </div>
